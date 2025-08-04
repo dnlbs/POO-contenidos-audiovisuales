@@ -1,0 +1,77 @@
+@startuml docs/diagrama-clases
+
+interface ExportableACSV {
+  + toCSV(): String
+  + fromCSV(linea: String): void
+}
+
+abstract class ContenidoAudiovisual {
+  - id: int
+  - titulo: String
+  - duracion: int
+  - genero: String
+  + mostrarDetalles(): void
+}
+
+class Pelicula {
+  - estudio: String
+  - actores: List<Actor>
+  + agregarActor(a: Actor): void
+}
+
+class SerieTV {
+  - temporadas: List<Temporada>
+  + agregarTemporada(t: Temporada): boolean
+}
+
+class Documental {
+  - tema: String
+  - investigador: Investigador
+}
+
+class Actor {
+  - nombre: String
+  - personaje: String
+}
+
+class Investigador {
+  - nombre: String
+  - especialidad: String
+}
+
+class Temporada {
+  - numero: int
+  - capitulos: int
+}
+
+class FileManager {
+  + guardarContenidos(objetos: List<ExportableACSV>, ruta: String): void
+  + cargarContenidos(ruta: String, tipo: Class<T>): List<T>
+}
+
+' Relaciones
+ContenidoAudiovisual <|-- Pelicula
+ContenidoAudiovisual <|-- SerieTV
+ContenidoAudiovisual <|-- Documental
+
+ContenidoAudiovisual ..|> ExportableACSV
+Pelicula "1" *-- "0..*" Actor
+Documental "1" *-- "0..1" Investigador
+SerieTV "1" *-- "1..*" Temporada
+FileManager ..> ExportableACSV
+
+note right of FileManager
+  Métodos principales:
+  - guardarContenidos()
+  - cargarContenidos()
+  (Soporta Class<T> y CSVFactory)
+end note
+
+note bottom of ContenidoAudiovisual
+  Validaciones en setters:
+  - título no vacío
+  - duración > 0
+  - género no vacío
+end note
+
+@enduml
