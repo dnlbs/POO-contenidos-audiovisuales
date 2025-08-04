@@ -45,4 +45,9 @@ Añadir soporte para bases de datos
 
 Mejorar la interfaz de usuario
 
-Este proyecto sigue los principios SOLID y está licenciado bajo MIT License.
+Este proyecto sigue los principios SOLID.
+Se hace una actualización de archivos por error en la dirección de la carpeta.
+
+<img width="1920" height="1080" alt="Screenshot 2025-08-04 011346" src="https://github.com/user-attachments/assets/f844c0c3-f4b1-4817-88ff-81c17aaca6ef" />
+Ecositema antes de la actualización forzosa.
+
